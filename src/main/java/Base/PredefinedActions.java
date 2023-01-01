@@ -45,9 +45,10 @@ public class PredefinedActions {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    protected void selectElement(WebElement element, String selectValue) {
+    protected void selectElementBy(WebElement element, String selectOptionValue) {
         Select select = new Select(element);
-        select.selectByValue(selectValue);
+        select.selectByValue(selectOptionValue);
+        log.trace("User is able to select the element");
     }
 
     public static String getWindowHandle() {
@@ -61,6 +62,7 @@ public class PredefinedActions {
     protected List<WebElement> getWebElementList(String locator, boolean isWaitRequired) {
         String locatorType = getLocatorType(locator);
         String locatorValue = getLocatorValue(locator);
+        log.trace("User is trying to get the list of WebElement");
         return driver.findElements(getByReference(locatorType, locatorValue));
     }
 
@@ -70,6 +72,7 @@ public class PredefinedActions {
         for (WebElement element : webElements) {
             elementListString.add(element.getText());
         }
+        log.trace("User is trying to get the list of String");
         return elementListString;
     }
 
@@ -79,6 +82,7 @@ public class PredefinedActions {
         for (WebElement element : webElements) {
             elementListInteger.add(Double.parseDouble(element.getText().replace(".", "").replace("%", "")));
         }
+        log.trace("User is trying to get the list of Integer");
         return elementListInteger;
     }
 
@@ -88,6 +92,7 @@ public class PredefinedActions {
         for (WebElement element : webElements) {
             elementListInteger.add(Double.parseDouble(element.getText().replace(".", "").replace("%", "")) / 100);
         }
+        log.trace("User is trying to get the list of Double");
         return elementListInteger;
     }
 
@@ -186,6 +191,7 @@ public class PredefinedActions {
     protected void clickEnter(String locator, boolean isWaitRequired) {
         WebElement element = getElement(locator, isWaitRequired);
         element.sendKeys(Keys.ENTER);
+        log.trace("User click the Enter Key");
     }
     protected void navigateBack()
     {
@@ -195,6 +201,7 @@ public class PredefinedActions {
     {
         WebElement element = getElement(locator,isWaitRequired);
         element.clear();
+        log.trace("User is able to clear the given element");
     }
 
     public static void takeScreenshot(String fileName) {

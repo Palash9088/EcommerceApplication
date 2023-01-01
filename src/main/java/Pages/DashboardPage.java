@@ -23,4 +23,14 @@ public class DashboardPage extends PredefinedActions {
         return getWebpageTitle();
     }
 
+    public MobilePage clickOnMobileSection()
+    {
+        clickOnElement(dashboardPage.getElement(dashboardPageProp.getValue("mobileMenu"),true ));
+        return MobilePage.getMobilePage();
+    }
+    public boolean isPageHeadingVisible()
+    {
+        return getElementText(getElement(dashboardPageProp.getValue("pageHeadingTitle"),true)).contains("DEMO");
+    }
+
 }
