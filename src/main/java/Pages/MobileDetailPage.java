@@ -6,14 +6,14 @@ import Utils.PropertyReading;
 
 public class MobileDetailPage extends PredefinedActions {
     private static MobileDetailPage mobileDetailPage;
-    PropertyReading mobileDetailPageProp;
+   private final PropertyReading mobileDetailPageProp;
 
     private MobileDetailPage() {
         //Private Constructor for Singleton Design Pattern
         mobileDetailPageProp = new PropertyReading(ConstantPaths.PROP_PATH + "MobileDetailPageProp.properties");
     }
 
-    public static MobileDetailPage getMobileDetailPagePage() {
+    public static MobileDetailPage getMobileDetailPage() {
         if (mobileDetailPage == null)
             mobileDetailPage = new MobileDetailPage();
         return mobileDetailPage;

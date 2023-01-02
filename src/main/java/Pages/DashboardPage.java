@@ -6,7 +6,7 @@ import Utils.PropertyReading;
 
 public class DashboardPage extends PredefinedActions {
     private static DashboardPage dashboardPage;
-    PropertyReading dashboardPageProp;
+    private final PropertyReading dashboardPageProp;
 
     private DashboardPage() {
         //Private Constructor for Singleton Design Pattern

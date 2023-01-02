@@ -3,6 +3,7 @@ package TestScripts;//import java.util.*;
 import Base.PredefinedActions;
 import Constants.ConstantPaths;
 import Pages.DashboardPage;
+import Pages.MobileCartPage;
 import Pages.MobileDetailPage;
 import Pages.MobilePage;
 import org.apache.log4j.PropertyConfigurator;
@@ -17,6 +18,7 @@ public class TestBase {
     private DashboardPage dashboardPage;
     private MobilePage mobilePage;
     private MobileDetailPage mobileDetailPage;
+    private MobileCartPage mobileCartPage;
 
 
     @BeforeClass
@@ -47,8 +49,15 @@ public class TestBase {
     MobileDetailPage getMobileDetailPageObj()
     {
         if(mobileDetailPage == null)
-            mobileDetailPage = MobileDetailPage.getMobileDetailPagePage();
+            mobileDetailPage = MobileDetailPage.getMobileDetailPage();
         return mobileDetailPage;
+    }
+
+    MobileCartPage getMobileCartPageObj()
+    {
+        if(mobileCartPage == null)
+            mobileCartPage = MobileCartPage.getMobileCartPage();
+        return mobileCartPage;
     }
 
 

@@ -10,7 +10,7 @@ import java.util.List;
 
 public class MobilePage extends PredefinedActions {
     private static MobilePage mobilePage;
-    private PropertyReading mobilePageProp;
+    private final PropertyReading mobilePageProp;
 
 
     private MobilePage() {
@@ -50,10 +50,13 @@ public class MobilePage extends PredefinedActions {
         return getElementText(getElement(mobilePageProp.getValue("productPrice"), true));
     }
 
-    public MobileDetailPage clickOnMobile(String mobileName) {
+    public void clickOnMobile(String mobileName) {
         String s = String.format(mobilePageProp.getValue("mobileBrand"),mobileName);
         clickOnElement(s,true);
-        return MobileDetailPage.getMobileDetailPagePage();
+    }
+    public void addToCartBtn()
+    {
+        clickOnElement(mobilePageProp.getValue("addToCartBtn"),true);
     }
 
 }
