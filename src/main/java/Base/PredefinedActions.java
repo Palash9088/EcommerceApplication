@@ -16,10 +16,11 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class PredefinedActions {
-    protected static WebDriver driver;
-    protected static WebDriverWait wait;
+    private static WebDriver driver;
+    private static WebDriverWait wait;
     static Logger log = Logger.getLogger(PredefinedActions.class);
 
     public static void initializeBrowser(String url, String browser) //Selenium 4.6.0 after that
@@ -45,18 +46,27 @@ public class PredefinedActions {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    protected void selectElementBy(WebElement element, String selectOptionValue) {
+    protected void selectElementByValue(WebElement element, String selectOptionValue) {
         Select select = new Select(element);
         select.selectByValue(selectOptionValue);
         log.trace("User is able to select the element");
     }
+    protected void selectElementByVisibleText(WebElement element, String selectOptionVisibleText) {
+        Select select = new Select(element);
+        select.selectByVisibleText(selectOptionVisibleText);
+        log.trace("User is able to select the element");
+    }
 
-    public static String getWindowHandle() {
-         /*   if(handle != null)
-             log.trace("Driver Launched");
-         else
-             log.trace("Driver not active");*/
+    protected String getWindowHandle() {
         return driver.getWindowHandle();
+    }
+
+    public Set<String> getWindowHandles() {
+        return driver.getWindowHandles();
+    }
+
+    protected void switchToWindow(String windowId) {
+        driver.switchTo().window(windowId);
     }
 
     protected List<WebElement> getWebElementList(String locator, boolean isWaitRequired) {
@@ -153,6 +163,11 @@ public class PredefinedActions {
         return null;
     }
 
+    private void drawBorder(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].style.border='2Px solid red'", element);
+    }
+
     protected String getElementText(WebElement element) {
         String text = element.getText();
         log.trace("User is trying to get Element text");
@@ -170,13 +185,14 @@ public class PredefinedActions {
     }
 
     protected void clickOnElement(WebElement element) {
-        element.click();
+        element.clear();
         log.trace("User able to click on Element");
     }
 
     protected void clickOnElement(String locatorType, boolean isWaitRequired) {
         WebElement element = getElement(locatorType, isWaitRequired);
-        wait.until(ExpectedConditions.elementToBeClickable(element));
+        if(isWaitRequired == true)
+            element = wait.until(ExpectedConditions.elementToBeClickable(element));
         element.click();
         log.trace("User able to click on Elements");
     }
@@ -193,13 +209,13 @@ public class PredefinedActions {
         element.sendKeys(Keys.ENTER);
         log.trace("User click the Enter Key");
     }
-    protected void navigateBack()
-    {
+
+    protected void navigateBack() {
         driver.navigate().back();
     }
-    protected void clearElementField(String locator,boolean isWaitRequired)
-    {
-        WebElement element = getElement(locator,isWaitRequired);
+
+    protected void clearElementField(String locator, boolean isWaitRequired) {
+        WebElement element = getElement(locator, isWaitRequired);
         element.clear();
         log.trace("User is able to clear the given element");
     }

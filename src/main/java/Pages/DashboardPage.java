@@ -33,4 +33,12 @@ public class DashboardPage extends PredefinedActions {
         return getElementText(getElement(dashboardPageProp.getValue("pageHeadingTitle"),true)).contains("DEMO");
     }
 
+    public void clickOnMyAccount()
+    {
+        clickOnElement(dashboardPageProp.getValue("myAccountBtn"),true);
+    }
+    public void clickOnTv()
+    {
+        clickOnElement(dashboardPageProp.getValue("tvMenu"),true);
+    }
 }

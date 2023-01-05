@@ -4,13 +4,12 @@ import Base.PredefinedActions;
 import Constants.ConstantPaths;
 import Utils.PropertyReading;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class MobilePage extends PredefinedActions {
     private static MobilePage mobilePage;
     private final PropertyReading mobilePageProp;
+    private String parentWindow;
 
 
     private MobilePage() {
@@ -34,7 +33,7 @@ public class MobilePage extends PredefinedActions {
 
     public void productSortByName() {
         clickOnElement(mobilePageProp.getValue("sortBy"), true);
-        selectElementBy(getElement(mobilePageProp.getValue("sortBy"), true),
+        selectElementByValue(getElement(mobilePageProp.getValue("sortBy"), true),
                 mobilePageProp.getValue("selectByValue"));
 
     }
@@ -51,12 +50,44 @@ public class MobilePage extends PredefinedActions {
     }
 
     public void clickOnMobile(String mobileName) {
-        String s = String.format(mobilePageProp.getValue("mobileBrand"),mobileName);
-        clickOnElement(s,true);
+        String s = String.format(mobilePageProp.getValue("mobileBrand"), mobileName);
+        clickOnElement(s, true);
     }
-    public void addToCartBtn()
+
+    public void addToCartBtn() {
+        clickOnElement(mobilePageProp.getValue("addToCartBtn"), true);
+    }
+
+    public void clickOnAddToCompare(String brandName) {
+        String s = String.format(mobilePageProp.getValue("addToCompareBtn"),brandName);
+        clickOnElement(s, true);
+    }
+
+    public void clickOnCompareProduct() {
+        clickOnElement(mobilePageProp.getValue("viewCompare"), true);
+        Set<String> handles = getWindowHandles();
+        Iterator<String> iterator = handles.iterator();
+        parentWindow = iterator.next();
+        String childWindow = iterator.next();
+        switchToWindow(childWindow);
+    }
+    public void afterAct()
     {
-        clickOnElement(mobilePageProp.getValue("addToCartBtn"),true);
+        closeBrowser();
+        switchToWindow(parentWindow);
+    }
+
+    public String getHeadingOfCompareWindow() {
+        return getElementText(mobilePage.getElement(mobilePageProp.getValue("childWinHeading"), true));
+    }
+
+    public String getFirstCompareProductName()
+    {
+       return getElementText(getElement(mobilePageProp.getValue("productOne"),true));
+    }
+    public String getSecondCompareProductName()
+    {
+        return getElementText(getElement(mobilePageProp.getValue("productTwo"),true));
     }
 
 }
