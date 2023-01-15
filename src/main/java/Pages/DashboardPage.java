@@ -25,7 +25,7 @@ public class DashboardPage extends PredefinedActions {
 
     public MobilePage clickOnMobileSection()
     {
-        clickOnElement(dashboardPage.getElement(dashboardPageProp.getValue("mobileMenu"),true ));
+        clickOnElement(dashboardPageProp.getValue("mobileMenu"),true );
         return MobilePage.getMobilePage();
     }
     public boolean isPageHeadingVisible()

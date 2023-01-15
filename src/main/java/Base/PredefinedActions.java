@@ -11,10 +11,15 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -29,6 +34,7 @@ public class PredefinedActions {
             case "CHROME":
                 driver = new ChromeDriver();
                 ChromeOptions options = new ChromeOptions();
+                //options.addArguments("kiosk-printing");
                 break;
             case "FIREFOX":
                 driver = new FirefoxDriver();
@@ -45,12 +51,17 @@ public class PredefinedActions {
         log.trace("User able to open the " + url);
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
+    public static void navigateToUrl(String url)
+    {
+        driver.navigate().to(url);
+    }
 
     protected void selectElementByValue(WebElement element, String selectOptionValue) {
         Select select = new Select(element);
         select.selectByValue(selectOptionValue);
         log.trace("User is able to select the element");
     }
+
     protected void selectElementByVisibleText(WebElement element, String selectOptionVisibleText) {
         Select select = new Select(element);
         select.selectByVisibleText(selectOptionVisibleText);
@@ -61,7 +72,7 @@ public class PredefinedActions {
         return driver.getWindowHandle();
     }
 
-    public Set<String> getWindowHandles() {
+    protected Set<String> getWindowHandles() {
         return driver.getWindowHandles();
     }
 
@@ -84,6 +95,17 @@ public class PredefinedActions {
         }
         log.trace("User is trying to get the list of String");
         return elementListString;
+    }
+    protected List<Date> getWebElementListInStringCustom(String locator, boolean isWaitRequired) throws ParseException {
+        List<WebElement> webElements = getWebElementList(locator, isWaitRequired);
+        SimpleDateFormat sdf = new SimpleDateFormat("MMM d yyyy hh:mm:ss aa");
+        List<String> elementListString = new ArrayList<>();
+        List<Date> elementListDate = new ArrayList<>();
+        for (WebElement element : webElements) {
+            elementListDate.add(sdf.parse(element.getText()));
+        }
+        log.trace("User is trying to get the list of String");
+        return elementListDate;
     }
 
     protected List<Double> getWebElementListInInteger(String locator, boolean isWaitRequired) {
@@ -113,7 +135,7 @@ public class PredefinedActions {
         if (isWaitRequired)
             element = wait.until(ExpectedConditions.visibilityOfElementLocated(getByReference(locatorType, locatorValue)));
         else
-            driver.findElement(getByReference(locatorType, locatorValue));
+          element  =  driver.findElement(getByReference(locatorType, locatorValue));
         log.trace("User is trying to get the element");
         return element;
     }
@@ -184,14 +206,22 @@ public class PredefinedActions {
         return driver.getTitle();
     }
 
-    protected void clickOnElement(WebElement element) {
-        element.clear();
+    protected void clickOnElement(WebElement element, boolean isWaitRequired) {
+        if (isWaitRequired == true)
+            wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.click();
         log.trace("User able to click on Element");
     }
 
-    protected void clickOnElement(String locatorType, boolean isWaitRequired) {
-        WebElement element = getElement(locatorType, isWaitRequired);
-        if(isWaitRequired == true)
+    protected void clickOnElementWithJS(String locator, boolean isWaitRequired) {
+        WebElement element = getElement(locator, isWaitRequired);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", element);
+    }
+
+    protected void clickOnElement(String locator, boolean isWaitRequired) {
+        WebElement element = getElement(locator, isWaitRequired);
+        if (isWaitRequired == true)
             element = wait.until(ExpectedConditions.elementToBeClickable(element));
         element.click();
         log.trace("User able to click on Elements");
@@ -210,6 +240,16 @@ public class PredefinedActions {
         log.trace("User click the Enter Key");
     }
 
+    public static void clickEnter() {
+        try {
+            Robot robot = new Robot();
+            robot.keyPress(KeyEvent.VK_ENTER);
+            robot.keyRelease(KeyEvent.VK_ENTER);
+        } catch (AWTException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     protected void navigateBack() {
         driver.navigate().back();
     }
@@ -218,6 +258,17 @@ public class PredefinedActions {
         WebElement element = getElement(locator, isWaitRequired);
         element.clear();
         log.trace("User is able to clear the given element");
+    }
+
+    protected void acceptAlert() {
+        wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
+    }
+
+    protected void dismissAlert() {
+        Alert alert = driver.switchTo().alert();
+        alert.dismiss();
     }
 
     public static void takeScreenshot(String fileName) {

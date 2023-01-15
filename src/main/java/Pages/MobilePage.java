@@ -90,4 +90,8 @@ public class MobilePage extends PredefinedActions {
         return getElementText(getElement(mobilePageProp.getValue("productTwo"),true));
     }
 
+    public void addToCartBtn(String productName) {
+        String s = String.format(mobilePageProp.getValue("addToCartBtn"),productName);
+        clickOnElement(s, true);
+    }
 }

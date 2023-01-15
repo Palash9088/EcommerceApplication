@@ -30,23 +30,44 @@ public class ShoppingCartPage extends PredefinedActions {
         clickOnElement(shoppingCartPageProp.getValue("estimateBtn"), true);
     }
 
-    public int getFlatRate() {
+    public double getFlatRate() {
         clickOnElement(shoppingCartPageProp.getValue("flatRateRadio"), true);
         clickOnElement(shoppingCartPageProp.getValue("flatRateUpdateBtn"),true);
-        return Integer.parseInt(getElementText(getElement(shoppingCartPageProp.getValue("flatRateInDollar"), true)).replace("$", "").replace(".", ""));
+        return Double.parseDouble(getElementText(getElement(shoppingCartPageProp.getValue("flatRateInDollar"), true)).replace("$", ""));
     }
 
-    public int getSubTotal() {
-        return Integer.parseInt(getElementText(getElement(shoppingCartPageProp.getValue("subTotal"), true)).replace("$", "").replace(".", ""));
+    public Double getSubTotal() {
+        return Double.parseDouble(getElementText(getElement(shoppingCartPageProp.getValue("subTotal"), true)).replace("$", "").replace(",", ""));
     }
 
-    public int getGrandTotal() {
-        return Integer.parseInt(getElementText(getElement(shoppingCartPageProp.getValue("grandTotal"), true)).replace("$", "").replace(".", ""));
+    public double getGrandTotal() {
+        return Double.parseDouble(getElementText(getElement(shoppingCartPageProp.getValue("grandTotal"), true)).replace("$", "").replace(",", ""));
     }
 
     public void clickOnCheckOutBtn() {
         clickOnElement(shoppingCartPageProp.getValue("proceedToCheckOutBtn"), true);
     }
 
-
+    public int getItemPrice(String productName)
+    {
+        String s = String.format(shoppingCartPageProp.getValue("itemPrice"),productName);
+       return Integer.parseInt(getElementText(getElement(s,true)).replace("$","").replace(".00",""));
+    }
+    public void updateQuantityOfProduct(String productName, String quantity)
+    {
+        String s = String.format(shoppingCartPageProp.getValue("updateQuantity"),productName);
+        clickOnElement(s,true);
+        clearElementField(s,true);
+        enterText(getElement(s,true),quantity);
+        clickOnElement(shoppingCartPageProp.getValue("updateBtn"),true);
+    }
+    public void enterDiscountCode(String discountName)
+    {
+        enterText(getElement(shoppingCartPageProp.getValue("discountBox"),true),discountName);
+        clickOnElement(shoppingCartPageProp.getValue("applyBtn"),true);
+    }
+    public Double getDiscountValue()
+    {
+        return Double.parseDouble(getElementText(getElement(shoppingCartPageProp.getValue("discountPrice"),true)).replace("-$",""));
+    }
 }

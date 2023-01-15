@@ -139,7 +139,7 @@ public class VerifyTechPandaTest extends TestBase {
 
         LoginOrCreateAccountPage loginOrCreateAccountPage = getLoginOrCreatePageObj();
         List<String> credList = loginOrCreateAccountPage.getCredList();
-        loginOrCreateAccountPage.loginIntoAccount(credList.get(0),credList.get(1));
+        loginOrCreateAccountPage.loginIntoAccount(credList.get(0), credList.get(1));
         loginOrCreateAccountPage.clickOnLoginBtn();
 
         AccountDashboardPage accountDashboardPage = getAccountDashboardPageObj();
@@ -147,28 +147,107 @@ public class VerifyTechPandaTest extends TestBase {
         accountDashboardPage.clickOnAddToCartBtn();
 
         ShoppingCartPage shoppingCartPage = getShoppingCartPageObj();
-        shoppingCartPage.fillShippingInformation("United States","New York","542896");
+        shoppingCartPage.fillShippingInformation("United States", "New York", "542896");
         shoppingCartPage.clickOnEstimateBtn();
 
-        int flatShippingRate = shoppingCartPage.getFlatRate();
-        int subTotal = shoppingCartPage.getSubTotal();
-        int expectedSubTotalWithShipping = subTotal+flatShippingRate;
-        int grandTotal = shoppingCartPage.getGrandTotal();
-        Assert.assertEquals(expectedSubTotalWithShipping,grandTotal);
+        double flatShippingRate = shoppingCartPage.getFlatRate();
+        double subTotal = shoppingCartPage.getSubTotal();
+        double expectedSubTotalWithShipping = subTotal + flatShippingRate;
+        double grandTotal = shoppingCartPage.getGrandTotal();
+        Assert.assertEquals(expectedSubTotalWithShipping, grandTotal);
         shoppingCartPage.clickOnCheckOutBtn();
 
         CheckoutPage checkoutPage = getCheckoutPageObj();
-        checkoutPage.fillBillingInformation("ABC","New York","New York","542896","United States","123456789");
+        checkoutPage.fillBillingInformation("ABC", "New York", "New York", "542896", "United States", "123456789");
         checkoutPage.clickOnContinueBtn();
         checkoutPage.confirmShippingMethod();
         checkoutPage.confirmPaymentMethod();
         checkoutPage.confirmOrder();
         String expectedOrderMsg = "Your order has been received.".toUpperCase();
         String actualOrderMsg = checkoutPage.getOrderConfirmation();
-        Assert.assertEquals(actualOrderMsg,expectedOrderMsg);
+        Assert.assertEquals(actualOrderMsg, expectedOrderMsg);
         log.info(checkoutPage.getOrderId());
 
         stopwatch.stop();
         log.info("Time Elapsed " + stopwatch.elapsed(TimeUnit.SECONDS));
+    }
+
+    /*Verify that you will be able to
+        save previously placed order
+            as a pdf file*/
+    @Test
+    public void verifyPdfFileSaving() {
+        DashboardPage dashboardPage = getDashboardObj();
+        dashboardPage.clickOnMyAccount();
+
+        LoginOrCreateAccountPage loginOrCreateAccountPage = getLoginOrCreatePageObj();
+        List<String> credList = loginOrCreateAccountPage.getCredList();
+        loginOrCreateAccountPage.loginIntoAccount(credList.get(0), credList.get(1));
+        loginOrCreateAccountPage.clickOnLoginBtn();
+
+        AccountDashboardPage accountDashboardPage = getAccountDashboardPageObj();
+        accountDashboardPage.clickOnMyOrders();
+        accountDashboardPage.clickOnViewOrder("100017735");
+        accountDashboardPage.isOrderPending();
+        accountDashboardPage.clickOnPrintOrder();
+        accountDashboardPage.verifyOrderIsSavedAsPDF();
+       /* // press Escape programmatically - the print dialog must have focus, obviously
+        Robot r = new Robot();
+        r.keyPress(KeyEvent.VK_ENTER);
+        r.keyRelease(KeyEvent.VK_ENTER);*/
+    }
+
+    @Test
+    public void verifyReorderOfProduct() {
+        DashboardPage dashboardPage = getDashboardObj();
+        dashboardPage.clickOnMyAccount();
+
+        LoginOrCreateAccountPage loginOrCreateAccountPage = getLoginOrCreatePageObj();
+        List<String> credList = loginOrCreateAccountPage.getCredList();
+        loginOrCreateAccountPage.loginIntoAccount(credList.get(0), credList.get(1));
+        loginOrCreateAccountPage.clickOnLoginBtn();
+
+        AccountDashboardPage accountDashboardPage = getAccountDashboardPageObj();
+        accountDashboardPage.clickOnMyOrders();
+        accountDashboardPage.clickOnReorder();
+
+        ShoppingCartPage shoppingCartPage = getShoppingCartPageObj();
+        String productName = "LG LCD";
+        String quantity = "10";
+        shoppingCartPage.updateQuantityOfProduct(productName, quantity);
+        double itemPrice = shoppingCartPage.getItemPrice(productName);
+        double actualGrandTotal = shoppingCartPage.getGrandTotal();
+        double expectedGrandTotal = Integer.parseInt(quantity) * itemPrice + shoppingCartPage.getFlatRate();
+        Assert.assertEquals(actualGrandTotal, expectedGrandTotal);
+
+        shoppingCartPage.fillShippingInformation("United States", "New York", "542896");
+        shoppingCartPage.clickOnEstimateBtn();
+        shoppingCartPage.clickOnCheckOutBtn();
+
+        CheckoutPage checkoutPage = getCheckoutPageObj();
+        checkoutPage.clickOnContinueBtn();
+        checkoutPage.confirmShippingMethod();
+        checkoutPage.confirmPaymentMethod();
+        checkoutPage.confirmOrder();
+    }
+
+    //verify Discount Coupon work correctly
+    @Test
+    public void verifyDiscountCoupon() {
+        DashboardPage dashboardPage = getDashboardObj();
+        dashboardPage.clickOnMobileSection();
+        MobilePage mobilePage = getMobilePageObj();
+        String productName = "IPhone";
+        mobilePage.addToCartBtn(productName);
+        ShoppingCartPage shoppingCartPage = getShoppingCartPageObj();
+        shoppingCartPage.enterDiscountCode("GURU50");
+        double actualDiscount = shoppingCartPage.getDiscountValue();
+        //IntegerDivisionInFloatingPointContext
+        double expectedDiscount = (shoppingCartPage.getItemPrice(productName) * 5.0) / 100.0;
+        Assert.assertEquals(actualDiscount, expectedDiscount);
+        double grandTotal = shoppingCartPage.getGrandTotal();
+        double actualPriceShouldBe = grandTotal - actualDiscount;
+        log.info("Actual price should be is " + actualPriceShouldBe + ", Actual Price is " + grandTotal);
+        Assert.assertEquals(actualPriceShouldBe,grandTotal,"Discount does not get applied");
     }
 }
