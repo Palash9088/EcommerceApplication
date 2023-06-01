@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite">
+<suite name="All Test Suite" parallel="">
     <test verbose="2" preserve-order="true"
-          name="C:/Users/palas/IdeaProjects/EcommerceApplication/src/test/java/TestScripts/VerifyTechPandaTest.java">
+          name="C:/Users/Palash/IdeaProjects/EcommerceApplication/src/test/java/testscripts/VerifyTechPandaTest.java">
         <classes>
-            <class name="TestScripts.VerifyTechPandaTest">
+            <class name="testscripts.VerifyTechPandaTest">
                 <methods>
-                    <include name="verifyRegistration"/>
-                    <include name="verifyUserIsAbleToPurchase"/>
+                    <include name="verifySortTest"/>
+                    <exclude name="verifyRegistration"></exclude>
                 </methods>
             </class>
         </classes>

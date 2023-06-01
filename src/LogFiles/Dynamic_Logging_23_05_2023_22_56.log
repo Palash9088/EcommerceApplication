@@ -1,0 +1,16 @@
+23 May 2023 22:56:59  0 [main] [TRACE] base.PredefinedActions [PredefinedActions.java:61] - User able to open the browser
+23 May 2023 22:57:04  5021 [main] [TRACE] base.PredefinedActions [PredefinedActions.java:63] - User able to open the http://live.techpanda.org/index.php/
+23 May 2023 22:57:04  5092 [main] [TRACE] base.PredefinedActions [PredefinedActions.java:207] - User is trying to get page title
+23 May 2023 22:57:04  5199 [main] [TRACE] base.PredefinedActions [PredefinedActions.java:141] - User is trying to get the element
+23 May 2023 22:57:04  5230 [main] [TRACE] base.PredefinedActions [PredefinedActions.java:197] - User is trying to get Element text
+23 May 2023 22:57:04  5294 [main] [TRACE] base.PredefinedActions [PredefinedActions.java:141] - User is trying to get the element
+23 May 2023 22:57:07  7965 [main] [TRACE] base.PredefinedActions [PredefinedActions.java:229] - User able to click on Elements
+23 May 2023 22:57:07  8017 [main] [TRACE] base.PredefinedActions [PredefinedActions.java:141] - User is trying to get the element
+23 May 2023 22:57:07  8319 [main] [TRACE] base.PredefinedActions [PredefinedActions.java:197] - User is trying to get Element text
+23 May 2023 22:57:07  8320 [main] [TRACE] base.PredefinedActions [PredefinedActions.java:207] - User is trying to get page title
+23 May 2023 22:57:07  8391 [main] [TRACE] base.PredefinedActions [PredefinedActions.java:141] - User is trying to get the element
+23 May 2023 22:57:07  8602 [main] [TRACE] base.PredefinedActions [PredefinedActions.java:229] - User able to click on Elements
+23 May 2023 22:57:07  8667 [main] [TRACE] base.PredefinedActions [PredefinedActions.java:141] - User is trying to get the element
+23 May 2023 22:57:08  9716 [main] [TRACE] base.PredefinedActions [PredefinedActions.java:74] - User is able to select the element
+23 May 2023 22:57:08  9717 [main] [TRACE] base.PredefinedActions [PredefinedActions.java:99] - User is trying to get the list of WebElement
+23 May 2023 22:57:08  9800 [main] [TRACE] base.PredefinedActions [PredefinedActions.java:109] - User is trying to get the list of String
