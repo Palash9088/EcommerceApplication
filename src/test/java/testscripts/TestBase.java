@@ -11,7 +11,11 @@ import utils.PropertyReading;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+/**
+ * @author Palash Soni
+ * https://github.com/Palash9088
+ * https://www.linkedin.com/in/Palash9088
+ * */
 public class TestBase {
 
     private DashboardPage dashboardPage;

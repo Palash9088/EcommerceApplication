@@ -4,7 +4,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
-
+/**
+ * @author Palash Soni
+ * https://github.com/Palash9088
+ * https://www.linkedin.com/in/Palash9088
+ * */
 public class PropertyReading {
     private Properties prop;
 

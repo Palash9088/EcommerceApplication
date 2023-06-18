@@ -3,7 +3,11 @@ package pages;//import java.util.*;
 import base.PredefinedActions;
 import constants.ConstantPaths;
 import utils.PropertyReading;
-
+/**
+ * @author Palash Soni
+ * https://github.com/Palash9088
+ * https://www.linkedin.com/in/Palash9088
+ * */
 public class DashboardPage extends PredefinedActions {
     private static DashboardPage dashboardPage;
     private final PropertyReading dashboardPageProp;

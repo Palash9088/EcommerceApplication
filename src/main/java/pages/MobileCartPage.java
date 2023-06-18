@@ -3,7 +3,11 @@ package pages;//import java.util.*;
 import base.PredefinedActions;
 import constants.ConstantPaths;
 import utils.PropertyReading;
-
+/**
+ * @author Palash Soni
+ * https://github.com/Palash9088
+ * https://www.linkedin.com/in/Palash9088
+ * */
 public class MobileCartPage extends PredefinedActions {
     private static MobileCartPage mobileCartPage;
     private final PropertyReading mobileCartPageProp;

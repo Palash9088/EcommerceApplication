@@ -2,7 +2,11 @@ package pages.Backend;//import java.util.*;
 
 import base.PredefinedActions;
 import utils.PropertyReading;
-
+/**
+ * @author Palash Soni
+ * https://github.com/Palash9088
+ * https://www.linkedin.com/in/Palash9088
+ * */
 public class LoginPage extends PredefinedActions {
     private final PropertyReading loginPageProp;
     private static LoginPage loginPage;

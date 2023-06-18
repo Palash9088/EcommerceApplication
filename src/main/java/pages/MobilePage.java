@@ -5,7 +5,11 @@ import constants.ConstantPaths;
 import utils.PropertyReading;
 
 import java.util.*;
-
+/**
+ * @author Palash Soni
+ * https://github.com/Palash9088
+ * https://www.linkedin.com/in/Palash9088
+ * */
 public class MobilePage extends PredefinedActions {
     private static MobilePage mobilePage;
     private final PropertyReading mobilePageProp;

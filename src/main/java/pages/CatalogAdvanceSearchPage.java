@@ -7,7 +7,11 @@ import utils.PropertyReading;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * @author Palash Soni
+ * https://github.com/Palash9088
+ * https://www.linkedin.com/in/Palash9088
+ * */
 public class CatalogAdvanceSearchPage extends PredefinedActions {
 
     private static final CatalogAdvanceSearchPage catalogAdvanceSearchPage = new CatalogAdvanceSearchPage();

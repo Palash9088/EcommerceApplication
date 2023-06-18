@@ -5,7 +5,11 @@ import pages.Backend.BackendDashboardPage;
 import pages.Backend.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
+/**
+ * @author Palash Soni
+ * https://github.com/Palash9088
+ * https://www.linkedin.com/in/Palash9088
+ * */
 public class VerifyBackendTest extends TestBase {
 
     @Test

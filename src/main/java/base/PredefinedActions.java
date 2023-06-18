@@ -22,6 +22,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * @author Palash Soni
+ * https://github.com/Palash9088
+ * https://www.linkedin.com/in/Palash9088
+ * */
 public class PredefinedActions {
     private static WebDriver driver;
     private static WebDriverWait wait;

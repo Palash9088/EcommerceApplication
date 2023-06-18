@@ -6,7 +6,11 @@ import utils.PropertyReading;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
+/**
+ * @author Palash Soni
+ * https://github.com/Palash9088
+ * https://www.linkedin.com/in/Palash9088
+ * */
 public class BackendDashboardPage extends PredefinedActions {
     private final PropertyReading backendDashboardPageProp;
     private static BackendDashboardPage backendDashboardPage;
