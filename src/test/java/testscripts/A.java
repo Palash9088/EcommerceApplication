@@ -1,5 +1,9 @@
 package testscripts;//import java.util.*;
-
+/**
+ * @author Palash Soni
+ * https://github.com/Palash9088
+ * https://www.linkedin.com/in/Palash9088
+ * */
 public class A {
     void m1(String text) {
         int upperCase = 0, lowerCase = 0;
