@@ -1,9 +1,9 @@
-package testscriptsbackend;//import java.util.*;
+package TestScriptsBackend;//import java.util.*;
 
-import base.PredefinedActions;
-import constants.ConstantPaths;
-import pages.Backend.BackendDashboardPage;
-import pages.Backend.LoginPage;
+import Base.PredefinedActions;
+import Constants.ConstantPaths;
+import Pages.Backend.BackendDashboardPage;
+import Pages.Backend.LoginPage;
 import org.apache.log4j.PropertyConfigurator;
 import org.testng.ITestResult;
 import org.testng.annotations.BeforeClass;
@@ -11,11 +11,7 @@ import org.testng.annotations.BeforeMethod;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-/**
- * @author Palash Soni
- * https://github.com/Palash9088
- * https://www.linkedin.com/in/Palash9088
- * */
+
 public class TestBase {
 
     private LoginPage loginPage;
@@ -32,7 +28,7 @@ public class TestBase {
 
     @BeforeMethod
     public void openBrowser() {
-        PredefinedActions.initializeBrowser("http://live.techpanda.org/index.php/backendlogin/", "chrome",false);
+        PredefinedActions.initializeBrowser("http://live.techpanda.org/index.php/backendlogin/", "chrome");
     }
 
     protected LoginPage getLoginPageObj() {

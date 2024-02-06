@@ -1,13 +1,9 @@
-package pages;//import java.util.*;
+package Pages;//import java.util.*;
 
-import base.PredefinedActions;
-import constants.ConstantPaths;
-import utils.PropertyReading;
-/**
- * @author Palash Soni
- * https://github.com/Palash9088
- * https://www.linkedin.com/in/Palash9088
- * */
+import Base.PredefinedActions;
+import Constants.ConstantPaths;
+import Utils.PropertyReading;
+
 public class DashboardPage extends PredefinedActions {
     private static DashboardPage dashboardPage;
     private final PropertyReading dashboardPageProp;
@@ -44,10 +40,5 @@ public class DashboardPage extends PredefinedActions {
     public void clickOnTv()
     {
         clickOnElement(dashboardPageProp.getValue("tvMenu"),true);
-    }
-
-    public void clickOnAdvanceSearch()
-    {
-        clickOnElement(dashboardPageProp.getValue("advanceSearch"),true);
     }
 }

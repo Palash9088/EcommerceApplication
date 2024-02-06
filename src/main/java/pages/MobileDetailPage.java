@@ -1,14 +1,10 @@
-package pages;//import java.util.*;
+package Pages;//import java.util.*;
 
-import base.PredefinedActions;
-import constants.ConstantPaths;
-import utils.PropertyReading;
+import Base.PredefinedActions;
+import Constants.ConstantPaths;
+import Utils.PropertyReading;
 import org.apache.log4j.Logger;
-/**
- * @author Palash Soni
- * https://github.com/Palash9088
- * https://www.linkedin.com/in/Palash9088
- * */
+
 public class MobileDetailPage extends PredefinedActions {
     private static MobileDetailPage mobileDetailPage;
     private final PropertyReading mobileDetailPageProp;

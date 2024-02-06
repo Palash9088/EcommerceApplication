@@ -1,13 +1,9 @@
-package pages;//import java.util.*;
+package Pages;//import java.util.*;
 
-import base.PredefinedActions;
-import constants.ConstantPaths;
-import utils.PropertyReading;
-/**
- * @author Palash Soni
- * https://github.com/Palash9088
- * https://www.linkedin.com/in/Palash9088
- * */
+import Base.PredefinedActions;
+import Constants.ConstantPaths;
+import Utils.PropertyReading;
+
 public class CreateAccountPage extends PredefinedActions {
     private static CreateAccountPage createAccountPage;
     private final PropertyReading createAccountPageProp;

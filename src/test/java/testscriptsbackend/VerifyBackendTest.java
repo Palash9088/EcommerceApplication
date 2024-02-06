@@ -1,15 +1,11 @@
-package testscriptsbackend;//import java.util.*;
+package TestScriptsBackend;//import java.util.*;
 
-import base.PredefinedActions;
-import pages.Backend.BackendDashboardPage;
-import pages.Backend.LoginPage;
+import Base.PredefinedActions;
+import Pages.Backend.BackendDashboardPage;
+import Pages.Backend.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-/**
- * @author Palash Soni
- * https://github.com/Palash9088
- * https://www.linkedin.com/in/Palash9088
- * */
+
 public class VerifyBackendTest extends TestBase {
 
     @Test
@@ -41,7 +37,7 @@ public class VerifyBackendTest extends TestBase {
         backendDashboardPage.clickOnFirstItem();
         backendDashboardPage.selectAction("Print Invoices");
         backendDashboardPage.clickOnSubmitBtn();
-        PredefinedActions.clickEnterRobot();
+        PredefinedActions.clickEnter();
 
 
 
