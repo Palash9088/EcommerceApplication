@@ -9,6 +9,8 @@ public class PropertyReading {
     private Properties prop;
 
     public PropertyReading(String path) {
+
+
         try {
             File file = new File(path);
             FileInputStream fileInputStream = new FileInputStream(file);

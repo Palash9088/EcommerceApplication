@@ -38,7 +38,7 @@ public class LoginOrCreateAccountPage extends PredefinedActions {
     {
         clickOnElement(loginOrCreatePageProp.getValue("loginBtn"),true);
     }
-    public List<String> getCredList()
+    public List<String>getCredList()
     {
         List<String> credList = new ArrayList<>();
         credList.add(credProp.getValue("email"));

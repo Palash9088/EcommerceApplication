@@ -3,6 +3,7 @@ package Pages;//import java.util.*;
 import Base.PredefinedActions;
 import Constants.ConstantPaths;
 import Utils.PropertyReading;
+
 public class CreateAccountPage extends PredefinedActions {
     private static CreateAccountPage createAccountPage;
     private final PropertyReading createAccountPageProp;
