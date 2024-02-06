@@ -1,4 +1,5 @@
 package Pages;//import java.util.*;
+
 import Base.PredefinedActions;
 import Constants.ConstantPaths;
 import Utils.PropertyReading;
@@ -39,10 +40,5 @@ public class DashboardPage extends PredefinedActions {
     public void clickOnTv()
     {
         clickOnElement(dashboardPageProp.getValue("tvMenu"),true);
-    }
-
-    public void clickOnAdvanceSearch()
-    {
-        clickOnElement(dashboardPageProp.getValue("advanceSearch"),true);
     }
 }

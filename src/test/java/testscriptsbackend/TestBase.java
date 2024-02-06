@@ -28,7 +28,7 @@ public class TestBase {
 
     @BeforeMethod
     public void openBrowser() {
-        PredefinedActions.initializeBrowser("http://live.techpanda.org/index.php/backendlogin/", "chrome",false);
+        PredefinedActions.initializeBrowser("http://live.techpanda.org/index.php/backendlogin/", "chrome");
     }
 
     protected LoginPage getLoginPageObj() {

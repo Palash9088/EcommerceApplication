@@ -14,7 +14,7 @@ public class VerifyProductReviewTest {
     @Test(priority = -1)
     public void doReview()
     {
-        PredefinedActions.initializeBrowser("http://live.techpanda.org/","chrome",false);
+        PredefinedActions.initializeBrowser("http://live.techpanda.org/","chrome");
         DashboardPage dashboardPage = DashboardPage.getDashboardPage();
         dashboardPage.clickOnMobileSection();
         MobilePage mobilePage = MobilePage.getMobilePage();
@@ -29,7 +29,7 @@ public class VerifyProductReviewTest {
 
     @Test
     public void reviewOnWebsite() {
-        PredefinedActions.initializeBrowser("http://live.techpanda.org/index.php/backendlogin","chrome",false);
+        PredefinedActions.initializeBrowser("http://live.techpanda.org/index.php/backendlogin","chrome");
         LoginPage loginPage = LoginPage.getLoginPage();
         loginPage.doLogin("user01","guru99com");
         loginPage.clickOnLoginBtn();

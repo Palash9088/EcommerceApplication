@@ -37,7 +37,7 @@ public class VerifyBackendTest extends TestBase {
         backendDashboardPage.clickOnFirstItem();
         backendDashboardPage.selectAction("Print Invoices");
         backendDashboardPage.clickOnSubmitBtn();
-        PredefinedActions.clickEnterRobot();
+        PredefinedActions.clickEnter();
 
 
 

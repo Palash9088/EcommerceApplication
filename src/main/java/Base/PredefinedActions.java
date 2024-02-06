@@ -6,7 +6,9 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -15,37 +17,46 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
 public class PredefinedActions {
     private static WebDriver driver;
     private static WebDriverWait wait;
-    static Logger log = Logger.getLogger(PredefinedActions.class);
+    private static Logger log = Logger.getLogger(PredefinedActions.class);
 
-    public static void initializeBrowser(String url, String browser) //Selenium 4.6.0 after that
-    {
+    public static void initializeBrowser(String url, String browser, boolean isHeadless) {
         switch (browser.toUpperCase()) {
             case "CHROME":
-                driver = new ChromeDriver();
-                ChromeOptions options = new ChromeOptions();
-                //options.addArguments("kiosk-printing");
+                ChromeOptions chromeOptions = new ChromeOptions();
+                if (isHeadless) {
+                    chromeOptions.addArguments("--headless=new");
+                }
+                chromeOptions.addArguments("--remote-allow-origins=*");
+                driver = new ChromeDriver(chromeOptions);
                 break;
             case "FIREFOX":
-                driver = new FirefoxDriver();
+                FirefoxOptions firefoxOptions = new FirefoxOptions();
+                if (isHeadless) {
+                    firefoxOptions.addArguments("--headless=new");
+                }
+                driver = new FirefoxDriver(firefoxOptions);
                 break;
             case "EDGE":
-                driver = new EdgeDriver();
+                EdgeOptions edgeOptions = new EdgeOptions();
+                if (isHeadless) {
+                    edgeOptions.addArguments("--headless=new");
+                }
+                driver = new EdgeDriver(edgeOptions);
+                break;
             default:
                 System.out.println("Illegal Browser Name");
                 break;
         }
         driver.manage().window().maximize();
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         log.trace("User able to open the browser");
         driver.get(url);
         log.trace("User able to open the " + url);
@@ -66,6 +77,7 @@ public class PredefinedActions {
         Select select = new Select(element);
         select.selectByVisibleText(selectOptionVisibleText);
         log.trace("User is able to select the element");
+
     }
 
     protected String getWindowHandle() {
@@ -96,23 +108,12 @@ public class PredefinedActions {
         log.trace("User is trying to get the list of String");
         return elementListString;
     }
-    protected List<Date> getWebElementListInStringCustom(String locator, boolean isWaitRequired) throws ParseException {
-        List<WebElement> webElements = getWebElementList(locator, isWaitRequired);
-        SimpleDateFormat sdf = new SimpleDateFormat("MMM d yyyy hh:mm:ss aa");
-        List<String> elementListString = new ArrayList<>();
-        List<Date> elementListDate = new ArrayList<>();
-        for (WebElement element : webElements) {
-            elementListDate.add(sdf.parse(element.getText()));
-        }
-        log.trace("User is trying to get the list of String");
-        return elementListDate;
-    }
 
-    protected List<Double> getWebElementListInInteger(String locator, boolean isWaitRequired) {
+    protected List<Integer> getWebElementListInInteger(String locator, boolean isWaitRequired) {
         List<WebElement> webElements = getWebElementList(locator, isWaitRequired);
-        List<Double> elementListInteger = new ArrayList<>();
+        List<Integer> elementListInteger = new ArrayList<>();
         for (WebElement element : webElements) {
-            elementListInteger.add(Double.parseDouble(element.getText().replace(".", "").replace("%", "")));
+            elementListInteger.add(Integer.parseInt(element.getText()));
         }
         log.trace("User is trying to get the list of Integer");
         return elementListInteger;
@@ -238,9 +239,10 @@ public class PredefinedActions {
         WebElement element = getElement(locator, isWaitRequired);
         element.sendKeys(Keys.ENTER);
         log.trace("User click the Enter Key");
+        
     }
 
-    public static void clickEnter() {
+    public static void clickEnterRobot() {
         try {
             Robot robot = new Robot();
             robot.keyPress(KeyEvent.VK_ENTER);
