@@ -1,11 +1,6 @@
-package constants;
-/**
- * @author Palash Soni
- * https://github.com/Palash9088
- * https://www.linkedin.com/in/Palash9088
- * */
+package Constants;
+
 public class ConstantPaths {
     public static final String PROP_PATH = "src/main/resources/Configs/";
     public static final String LOG4J_PATH = "src/main/resources/Configs/log4j.properties";
-    public static final String CONFIG_PATH = "src/main/resources/Configs/Configuration.properties";
 }
