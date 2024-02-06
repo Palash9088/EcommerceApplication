@@ -1,18 +1,16 @@
-package utils;//import java.util.*;
+package Utils;//import java.util.*;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
-/**
- * @author Palash Soni
- * https://github.com/Palash9088
- * https://www.linkedin.com/in/Palash9088
- * */
+
 public class PropertyReading {
     private Properties prop;
 
     public PropertyReading(String path) {
+
+
         try {
             File file = new File(path);
             FileInputStream fileInputStream = new FileInputStream(file);

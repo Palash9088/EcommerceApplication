@@ -1,21 +1,16 @@
-package testscripts;//import java.util.*;
+package TestScripts;//import java.util.*;
 
-import base.PredefinedActions;
-import constants.ConstantPaths;
+import Base.PredefinedActions;
+import Constants.ConstantPaths;
+import Pages.*;
 import org.apache.log4j.PropertyConfigurator;
 import org.testng.ITestResult;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import pages.*;
-import utils.PropertyReading;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-/**
- * @author Palash Soni
- * https://github.com/Palash9088
- * https://www.linkedin.com/in/Palash9088
- * */
+
 public class TestBase {
 
     private DashboardPage dashboardPage;
@@ -28,23 +23,21 @@ public class TestBase {
     private TVPage tvPage;
     private ShoppingCartPage shoppingCartPage;
     private CheckoutPage checkoutPage;
-    private CatalogAdvanceSearchPage catalogAdvanceSearchPage;
-    private static PropertyReading prop;
+
+
 
     @BeforeClass
     public void beforeClass() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd_MM_yyyy_HH_mm");
         System.setProperty("current.date.time", sdf.format(new Date()));
+
         PropertyConfigurator.configure(ConstantPaths.LOG4J_PATH);
-        prop = new PropertyReading(ConstantPaths.CONFIG_PATH);
 
     }
 
     @BeforeMethod
     public void openBrowser() {
-        PredefinedActions.initializeBrowser(prop.getValue("url"),
-                prop.getValue("browser"),
-                Boolean.parseBoolean(prop.getValue("headless")));
+        PredefinedActions.initializeBrowser("http://live.techpanda.org/index.php/", "chrome");
     }
 
 
@@ -101,18 +94,12 @@ public class TestBase {
             shoppingCartPage = ShoppingCartPage.getShoppingCartPage();
         return shoppingCartPage;
     }
-
     CheckoutPage getCheckoutPageObj() {
         if (checkoutPage == null)
             checkoutPage = CheckoutPage.getcheckoutPage();
         return checkoutPage;
     }
 
-    CatalogAdvanceSearchPage getCatalogAdvanceSearchObj() {
-        if (catalogAdvanceSearchPage == null)
-            catalogAdvanceSearchPage = CatalogAdvanceSearchPage.getCatalogAdvanceSearch();
-        return catalogAdvanceSearchPage;
-    }
 
     // @AfterMethod
     public void closeBrowser(ITestResult result) {

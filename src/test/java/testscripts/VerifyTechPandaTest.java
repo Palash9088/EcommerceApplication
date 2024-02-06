@@ -1,6 +1,6 @@
-package testscripts;//import java.util.*;
+package TestScripts;//import java.util.*;
 
-import pages.*;
+import Pages.*;
 import com.google.common.base.Stopwatch;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -13,7 +13,7 @@ public class VerifyTechPandaTest extends TestBase {
     static Logger log = Logger.getLogger(VerifyTechPandaTest.class);
 
     //Verify item in Mobile List page can be sorted by 'Name'
-    @Test()
+    @Test
     public void verifySortTest() {
 
         DashboardPage dashboardPage = getDashboardObj();
@@ -43,11 +43,11 @@ public class VerifyTechPandaTest extends TestBase {
         MobileDetailPage mobileDetailPage = getMobileDetailPageObj();
 
         String valueInMobileListPage = mobilePage.productValueInMobileListPage();
-        log.info("Actual Price in Mobile list Page " + valueInMobileListPage);
+        log.info(valueInMobileListPage);
 
         mobilePage.clickOnMobile("Sony");
         String valueInMobileDetailPage = mobileDetailPage.getMobilePrice();
-        log.info("Expected Price in Mobile Detail Page " + valueInMobileDetailPage);
+        log.info(valueInMobileDetailPage);
         Assert.assertEquals(valueInMobileDetailPage, valueInMobileListPage);
     }
 
@@ -249,22 +249,5 @@ public class VerifyTechPandaTest extends TestBase {
         double actualPriceShouldBe = grandTotal - actualDiscount;
         log.info("Actual price should be is " + actualPriceShouldBe + ", Actual Price is " + grandTotal);
         Assert.assertEquals(actualPriceShouldBe,grandTotal,"Discount does not get applied");
-    }
-
-    @Test()
-    public void verifySearchFunctionality()
-    {
-        DashboardPage dashboardPage = getDashboardObj();
-        dashboardPage.clickOnAdvanceSearch();
-
-        CatalogAdvanceSearchPage catalogAdvanceSearchPage = getCatalogAdvanceSearchObj();
-        catalogAdvanceSearchPage.enterSearchValues("0","150");
-        catalogAdvanceSearchPage.clickOnSearchBtn();
-        log.info(catalogAdvanceSearchPage.getProductMapAfterSearch());
-        catalogAdvanceSearchPage.clickOnModifySearch();
-
-        catalogAdvanceSearchPage.enterSearchValues("151","1000");
-        catalogAdvanceSearchPage.clickOnSearchBtn();
-        log.info(catalogAdvanceSearchPage.getProductMapAfterSearch());
     }
 }

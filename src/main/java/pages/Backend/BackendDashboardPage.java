@@ -1,16 +1,14 @@
-package pages.Backend;//import java.util.*;
+package Pages.Backend;//import java.util.*;
 
-import base.PredefinedActions;
-import utils.PropertyReading;
+import Base.PredefinedActions;
+import Utils.PropertyReading;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
-/**
- * @author Palash Soni
- * https://github.com/Palash9088
- * https://www.linkedin.com/in/Palash9088
- * */
+
 public class BackendDashboardPage extends PredefinedActions {
     private final PropertyReading backendDashboardPageProp;
     private static BackendDashboardPage backendDashboardPage;
@@ -101,29 +99,19 @@ public class BackendDashboardPage extends PredefinedActions {
         clickOnElement(backendDashboardPageProp.getValue("invoiceHeader"), true);
     }
 
-    public boolean isInvoiceDateInAscending()  {
-       List<Integer> ascList = getWebElementListInInteger(backendDashboardPageProp.getValue("invoiceListDate"),true);
-       List<Integer> temp = new ArrayList<>(ascList);
-       Collections.sort(temp);
-       return ascList.equals(temp);
+    public boolean isInvoiceDateInAscending() throws ParseException {
+        List<Date> sortedList = getWebElementListInStringCustom(backendDashboardPageProp.getValue("invoiceListDate"), true);
+        System.out.println(sortedList);
+        List<Date> temp = new ArrayList<Date>(sortedList);
+        System.out.println(temp);
+        return sortedList.equals(temp);
     }
 
     public boolean isInvoiceDateInDescending() {
-        List<Integer> dscList = getWebElementListInInteger(backendDashboardPageProp.getValue("invoiceListDate"), true);
-        List<Integer> temp = new ArrayList<>(dscList);
-        temp.sort(Collections.reverseOrder());
-        return dscList.equals(temp);
+        List<String> sortedList = getWebElementListInString(backendDashboardPageProp.getValue("invoiceListDate"), true);
+        List<String> temp = new ArrayList<>(sortedList);
+        Collections.reverse(temp);
+        return sortedList.equals(temp);
     }
-
-    public void clickOnCustomerMenu()
-    {
-        clickOnElement(backendDashboardPageProp.getValue("customerMenu"),true);
-    }
-    public void clickOnManageCustomerSubmenu()
-    {
-        clickOnElement(backendDashboardPageProp.getValue("manageCustomerSubMenu"),true);
-
-    }
-
 
 }

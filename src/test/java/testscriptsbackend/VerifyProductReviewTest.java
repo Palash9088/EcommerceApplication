@@ -1,24 +1,20 @@
-package testscriptsbackend;//import java.util.*;
+package TestScriptsBackend;//import java.util.*;
 
-import base.PredefinedActions;
-import pages.Backend.BackendDashboardPage;
-import pages.Backend.LoginPage;
-import pages.DashboardPage;
-import pages.MobileDetailPage;
-import pages.MobilePage;
+import Base.PredefinedActions;
+import Pages.Backend.BackendDashboardPage;
+import Pages.Backend.LoginPage;
+import Pages.DashboardPage;
+import Pages.MobileDetailPage;
+import Pages.MobilePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-/**
- * @author Palash Soni
- * https://github.com/Palash9088
- * https://www.linkedin.com/in/Palash9088
- * */
+
 public class VerifyProductReviewTest {
     String reviewerName = "Kallu Ustad".toUpperCase();
     @Test(priority = -1)
     public void doReview()
     {
-        PredefinedActions.initializeBrowser("http://live.techpanda.org/","chrome",false);
+        PredefinedActions.initializeBrowser("http://live.techpanda.org/","chrome");
         DashboardPage dashboardPage = DashboardPage.getDashboardPage();
         dashboardPage.clickOnMobileSection();
         MobilePage mobilePage = MobilePage.getMobilePage();
@@ -33,7 +29,7 @@ public class VerifyProductReviewTest {
 
     @Test
     public void reviewOnWebsite() {
-        PredefinedActions.initializeBrowser("http://live.techpanda.org/index.php/backendlogin","chrome",false);
+        PredefinedActions.initializeBrowser("http://live.techpanda.org/index.php/backendlogin","chrome");
         LoginPage loginPage = LoginPage.getLoginPage();
         loginPage.doLogin("user01","guru99com");
         loginPage.clickOnLoginBtn();
