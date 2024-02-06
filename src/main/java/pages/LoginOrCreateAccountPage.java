@@ -1,8 +1,8 @@
-package pages;//import java.util.*;
+package Pages;//import java.util.*;
 
-import base.PredefinedActions;
-import constants.ConstantPaths;
-import utils.PropertyReading;
+import Base.PredefinedActions;
+import Constants.ConstantPaths;
+import Utils.PropertyReading;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +38,7 @@ public class LoginOrCreateAccountPage extends PredefinedActions {
     {
         clickOnElement(loginOrCreatePageProp.getValue("loginBtn"),true);
     }
-    public List<String>getCredList()
+    public List<String> getCredList()
     {
         List<String> credList = new ArrayList<>();
         credList.add(credProp.getValue("email"));

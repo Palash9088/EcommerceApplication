@@ -1,8 +1,8 @@
-package pages;//import java.util.*;
+package Pages;//import java.util.*;
 
-import base.PredefinedActions;
-import constants.ConstantPaths;
-import utils.PropertyReading;
+import Base.PredefinedActions;
+import Constants.ConstantPaths;
+import Utils.PropertyReading;
 
 public class TVPage extends PredefinedActions {
     private static TVPage tvPage;

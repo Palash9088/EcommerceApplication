@@ -1,4 +1,4 @@
-package base;//import java.util.*;
+package Base;//import java.util.*;
 
 import com.google.common.io.Files;
 import org.apache.log4j.Logger;
@@ -32,7 +32,7 @@ public class PredefinedActions {
             case "CHROME":
                 ChromeOptions chromeOptions = new ChromeOptions();
                 if (isHeadless) {
-                    chromeOptions.setHeadless(true);
+                    chromeOptions.addArguments("--headless=new");
                 }
                 chromeOptions.addArguments("--remote-allow-origins=*");
                 driver = new ChromeDriver(chromeOptions);
@@ -40,7 +40,6 @@ public class PredefinedActions {
             case "FIREFOX":
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 if (isHeadless) {
-                    firefoxOptions.setHeadless(true);
                     firefoxOptions.addArguments("--headless=new");
                 }
                 driver = new FirefoxDriver(firefoxOptions);

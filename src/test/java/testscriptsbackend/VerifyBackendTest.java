@@ -1,8 +1,8 @@
-package testscriptsbackend;//import java.util.*;
+package TestScriptsBackend;//import java.util.*;
 
-import base.PredefinedActions;
-import pages.Backend.BackendDashboardPage;
-import pages.Backend.LoginPage;
+import Base.PredefinedActions;
+import Pages.Backend.BackendDashboardPage;
+import Pages.Backend.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

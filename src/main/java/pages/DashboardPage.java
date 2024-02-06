@@ -1,8 +1,7 @@
-package pages;//import java.util.*;
-
-import base.PredefinedActions;
-import constants.ConstantPaths;
-import utils.PropertyReading;
+package Pages;//import java.util.*;
+import Base.PredefinedActions;
+import Constants.ConstantPaths;
+import Utils.PropertyReading;
 
 public class DashboardPage extends PredefinedActions {
     private static DashboardPage dashboardPage;

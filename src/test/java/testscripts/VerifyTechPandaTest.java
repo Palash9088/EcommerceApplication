@@ -1,6 +1,6 @@
-package testscripts;//import java.util.*;
+package TestScripts;//import java.util.*;
 
-import pages.*;
+import Pages.*;
 import com.google.common.base.Stopwatch;
 import org.apache.log4j.Logger;
 import org.testng.Assert;

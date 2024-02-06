@@ -1,9 +1,9 @@
-package testscriptsbackend;//import java.util.*;
+package TestScriptsBackend;//import java.util.*;
 
-import base.PredefinedActions;
-import constants.ConstantPaths;
-import pages.Backend.BackendDashboardPage;
-import pages.Backend.LoginPage;
+import Base.PredefinedActions;
+import Constants.ConstantPaths;
+import Pages.Backend.BackendDashboardPage;
+import Pages.Backend.LoginPage;
 import org.apache.log4j.PropertyConfigurator;
 import org.testng.ITestResult;
 import org.testng.annotations.BeforeClass;

@@ -1,7 +1,7 @@
-package pages.Backend;//import java.util.*;
+package Pages.Backend;//import java.util.*;
 
-import base.PredefinedActions;
-import utils.PropertyReading;
+import Base.PredefinedActions;
+import Utils.PropertyReading;
 
 public class LoginPage extends PredefinedActions {
     private final PropertyReading loginPageProp;

@@ -1,13 +1,14 @@
-package testscripts;//import java.util.*;
+package TestScripts;//import java.util.*;
 
-import base.PredefinedActions;
-import constants.ConstantPaths;
+import Base.PredefinedActions;
+import Constants.ConstantPaths;
+import Pages.*;
+import Utils.PropertyReading;
 import org.apache.log4j.PropertyConfigurator;
 import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import pages.*;
-import utils.PropertyReading;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -110,7 +111,7 @@ public class TestBase {
         return catalogAdvanceSearchPage;
     }
 
-    // @AfterMethod
+    @AfterMethod
     public void closeBrowser(ITestResult result) {
         if (result.getStatus() == ITestResult.FAILURE)
             PredefinedActions.takeScreenshot(result.getName());

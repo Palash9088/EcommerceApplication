@@ -1,7 +1,7 @@
-package testscriptsbackend;//import java.util.*;
+package TestScriptsBackend;//import java.util.*;
 
-import pages.Backend.BackendDashboardPage;
-import pages.Backend.LoginPage;
+import Pages.Backend.BackendDashboardPage;
+import Pages.Backend.LoginPage;
 import org.testng.annotations.Test;
 
 public class VerifyDisabledFieldsTest extends TestBase{
